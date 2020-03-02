@@ -1,6 +1,6 @@
 package com.teksystems.sales.impl.taxes;
 
-import com.teksystems.sales.taxes.RoundUpStrategy;
+import com.teksystems.sales.taxes.strategy.RoundUpStrategy;
 
 public class RoundUpStrategyImpl implements RoundUpStrategy {
 	

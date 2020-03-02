@@ -5,9 +5,7 @@ import static org.junit.Assert.assertEquals;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.teksystems.sales.impl.taxes.RoundUpStrategyImpl;
 import com.teksystems.sales.impl.taxes.TaxCalculatorImpl;
-import com.teksystems.sales.taxes.RoundUpStrategy;
 import com.teksystems.sales.taxes.TaxCalculator;
 import com.teksystems.sales.test.impl.NoRoundStrategyImpl;
 

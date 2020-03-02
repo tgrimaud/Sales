@@ -8,7 +8,6 @@ import org.junit.Test;
 import com.teksystems.sales.dto.Receipt;
 import com.teksystems.sales.dto.ReceiptLine;
 import com.teksystems.sales.impl.presenter.ReceiptPresenterImpl;
-import com.teksystems.sales.presenter.PrintReceiptStrategy;
 import com.teksystems.sales.presenter.ReceiptPresenter;
 
 public class ReceiptPresenterTest {

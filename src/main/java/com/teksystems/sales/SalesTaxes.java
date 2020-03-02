@@ -17,78 +17,56 @@ import com.teksystems.sales.services.PurchaseService;
 public class SalesTaxes {
 	PurchaseService purchaseService;
 	ProductService productService;
-
+	BasketToInvoiceMapper basketMapper;
+	ReceiptToInvoiceMapper receiptMapper;
+	ReceiptPresenter receiptPresenter;
 	
 	public SalesTaxes() {
+		SalesFactory factory = SalesFactoryHCImpl.getInstance();
+		basketMapper = new BasketToInvoiceMapper();
+		receiptMapper = new ReceiptToInvoiceMapper();
+		receiptPresenter = factory.getReceiptPresenter();
+		productService = factory.getProductService();
+		purchaseService = factory.getPurchaseService();
 	}
 	
-	public void setPurchaseService(PurchaseService purchaseService) {
-		this.purchaseService = purchaseService;
+	
+	public void createBasket(Basket basket)  {
+		Invoice invoice = basketMapper.mapToEntity(basket);
+		try {
+			purchaseService.createInvoice(invoice);
+		} catch (ProductNotFoundException e) {
+			System.out.println(e.getMessage());
+		} catch(TaxNotFoundException e) {
+			System.out.println(e.getMessage());
+		}
 	}
 	
-	public void setProductService(ProductService productService) {
-		this.productService = productService;
-	}
-	
-	public void createInvoice(Invoice invoice) throws ProductNotFoundException, TaxNotFoundException {
-		purchaseService.createInvoice(invoice);
-	}
-	
-	public List<Invoice> getInvoices() {
-		return purchaseService.getInvoices();
+	public void printReceipts() {
+		List<Invoice> invoices = purchaseService.getInvoices();
+		for (Invoice inv : invoices) {
+			Receipt receipt = receiptMapper.mapToDTO(inv);
+			receiptPresenter.presentReceipt(receipt);
+		}
 	}
 	
 	public void changeProductPrice(String productName, Double newPrice) throws ProductNotFoundException {
 		productService.updateProductPriceByProductName(productName, newPrice);
 	}
 	
+	
+	
 	public static void main(String[] args) {
-		SalesFactory factory = SalesFactoryHCImpl.getInstance();
-		BasketToInvoiceMapper basketMapper = new BasketToInvoiceMapper();
-		ReceiptToInvoiceMapper receiptMapper = new ReceiptToInvoiceMapper();
-		ReceiptPresenter receiptPresenter = factory.getReceiptPresenter();
+		SalesTaxes salesTax = new SalesTaxes();
+				
+		salesTax.createBasket(createBasket1());
 		
-		SalesTaxes salesTaxes = new SalesTaxes();
-		salesTaxes.setProductService(factory.getProductService());
-		salesTaxes.setPurchaseService(factory.getPurchaseService());
+		salesTax.createBasket(createBasket2());
 		
+		salesTax.createBasket(createBasket3());
 		
-		Basket basket = createBasket1();
-		Invoice invoice = basketMapper.mapToEntity(basket);
+		salesTax.printReceipts();
 		
-		try {
-			salesTaxes.createInvoice(invoice);
-		} catch (ProductNotFoundException e) {
-			System.out.println(e.getMessage());
-		} catch(TaxNotFoundException e) {
-			System.out.println(e.getMessage());
-		}
-		
-		basket = createBasket2();
-		invoice = basketMapper.mapToEntity(basket);
-		try {
-			salesTaxes.createInvoice(invoice);
-		} catch (ProductNotFoundException e) {
-			System.out.println(e.getMessage());
-		} catch(TaxNotFoundException e) {
-			System.out.println(e.getMessage());
-		}
-		
-		basket = createBasket3();
-		invoice = basketMapper.mapToEntity(basket);
-		try {
-			salesTaxes.createInvoice(invoice);
-		} catch (ProductNotFoundException e) {
-			System.out.println(e.getMessage());
-		} catch(TaxNotFoundException e) {
-			System.out.println(e.getMessage());
-		}
-		
-		List<Invoice> invoices = salesTaxes.getInvoices();
-		for (Invoice inv : invoices) {
-			Receipt receipt = receiptMapper.mapToDTO(inv);
-			receiptPresenter.presentReceipt(receipt);
-		}
 	}
 	
 	

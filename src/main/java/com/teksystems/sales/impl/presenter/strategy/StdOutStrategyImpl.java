@@ -1,4 +1,4 @@
-package com.teksystems.sales.impl.presenter;
+package com.teksystems.sales.impl.presenter.strategy;
 
 import com.teksystems.sales.presenter.PrintReceiptStrategy;
 

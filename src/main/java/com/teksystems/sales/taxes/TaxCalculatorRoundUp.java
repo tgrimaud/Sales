@@ -1,5 +1,7 @@
 package com.teksystems.sales.taxes;
 
+import com.teksystems.sales.taxes.strategy.RoundUpStrategy;
+
 public abstract class TaxCalculatorRoundUp implements TaxCalculator {
 	private RoundUpStrategy strategy;
 	

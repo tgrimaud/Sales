@@ -3,6 +3,7 @@ package com.teksystems.sales.test;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 
+import com.teksystems.sales.test.Presenter.ReceiptPresenterTest;
 import com.teksystems.sales.test.dao.InvoiceDAOTest;
 import com.teksystems.sales.test.dao.ProductDAOTest;
 import com.teksystems.sales.test.entity.MapperBITest;
@@ -27,8 +28,8 @@ import com.teksystems.sales.test.taxes.TaxCalculatorTest;
 	TaxCalculatorTest.class,
 	ProductServiceTest.class,
 	TaxServiceTest.class,
-	PurchaseServiceTest.class
-	
+	PurchaseServiceTest.class,
+	ReceiptPresenterTest.class
 })
 
 public class SalesTestSuite {

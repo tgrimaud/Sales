@@ -2,10 +2,9 @@ package com.teksystems.sales.impl.presenter;
 
 import com.teksystems.sales.dto.Receipt;
 import com.teksystems.sales.dto.ReceiptLine;
-import com.teksystems.sales.presenter.PrintReceiptStrategy;
-import com.teksystems.sales.presenter.ReceiptPresenterStrategy;
+import com.teksystems.sales.presenter.strategy.PrintStrategy;
 
-public class ReceiptPresenterImpl extends ReceiptPresenterStrategy {
+public class ReceiptPresenterImpl extends PrintStrategy {
 	
 	public ReceiptPresenterImpl() {
 		

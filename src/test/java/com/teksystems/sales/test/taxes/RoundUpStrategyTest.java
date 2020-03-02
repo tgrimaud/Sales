@@ -6,7 +6,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import com.teksystems.sales.impl.taxes.RoundUpStrategyImpl;
-import com.teksystems.sales.taxes.RoundUpStrategy;
+import com.teksystems.sales.taxes.strategy.RoundUpStrategy;
 
 public class RoundUpStrategyTest {
 	RoundUpStrategy roundUpStrategy;
