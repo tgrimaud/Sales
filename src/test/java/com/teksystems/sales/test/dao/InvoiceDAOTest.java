@@ -9,14 +9,14 @@ import com.teksystems.sales.dao.InvoiceDAO;
 import com.teksystems.sales.entity.Invoice;
 import com.teksystems.sales.entity.InvoiceLine;
 import com.teksystems.sales.exceptions.InvoiceNotFoundException;
-import com.teksystems.sales.impl.dao.InvoiceDAOHCImpl;
+import com.teksystems.sales.impl.dao.InMemoryInvoiceDAO;
 
 public class InvoiceDAOTest {
 	InvoiceDAO invoicedao;
 	
 	@Before
 	public void initDAO() {
-		invoicedao = InvoiceDAOHCImpl.getInstance();
+		invoicedao = InMemoryInvoiceDAO.getInstance();
 	}
 	
 	@Test

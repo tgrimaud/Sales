@@ -7,7 +7,7 @@ import com.teksystems.sales.dto.Receipt;
 import com.teksystems.sales.entity.Invoice;
 import com.teksystems.sales.exceptions.ProductNotFoundException;
 import com.teksystems.sales.exceptions.TaxNotFoundException;
-import com.teksystems.sales.impl.SalesFactoryHCImpl;
+import com.teksystems.sales.impl.InMemorySalesFactory;
 import com.teksystems.sales.mapper.BasketToInvoiceMapper;
 import com.teksystems.sales.mapper.ReceiptToInvoiceMapper;
 import com.teksystems.sales.presenter.ReceiptPresenter;
@@ -22,7 +22,7 @@ public class SalesTaxes {
 	ReceiptPresenter receiptPresenter;
 	
 	public SalesTaxes() {
-		SalesFactory factory = SalesFactoryHCImpl.getInstance();
+		SalesFactory factory = InMemorySalesFactory.getInstance();
 		basketMapper = new BasketToInvoiceMapper();
 		receiptMapper = new ReceiptToInvoiceMapper();
 		receiptPresenter = factory.getReceiptPresenter();

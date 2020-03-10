@@ -9,14 +9,14 @@ import com.teksystems.sales.dao.ProductDAO;
 import com.teksystems.sales.entity.Product;
 import com.teksystems.sales.entity.ProductType;
 import com.teksystems.sales.exceptions.ProductNotFoundException;
-import com.teksystems.sales.impl.dao.ProductDAOHCImpl;
+import com.teksystems.sales.impl.dao.InMemoryProductDAO;
 
 public class ProductDAOTest {
 	ProductDAO productdao;
 	
 	@Before
 	public void initDAO() {
-		productdao = ProductDAOHCImpl.getInstance();
+		productdao = InMemoryProductDAO.getInstance();
 	}
 	
 	@Test

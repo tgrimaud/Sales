@@ -7,19 +7,19 @@ import com.teksystems.sales.dao.InvoiceDAO;
 import com.teksystems.sales.entity.Invoice;
 import com.teksystems.sales.exceptions.InvoiceNotFoundException;
 
-public class InvoiceDAOHCImpl implements InvoiceDAO {
+public class InMemoryInvoiceDAO implements InvoiceDAO {
 	private List<Invoice> hcInvoices; 
 	private int auto_inc = 1;
 	
 	private static InvoiceDAO instance;
 	
-	private InvoiceDAOHCImpl() {
+	private InMemoryInvoiceDAO() {
 		hcInvoices = new ArrayList<Invoice>();
 	};
 	
 	public static InvoiceDAO getInstance() {
 		if (instance == null) {
-			instance = new InvoiceDAOHCImpl();
+			instance = new InMemoryInvoiceDAO();
 		}
 		return instance;
 	}
@@ -41,7 +41,6 @@ public class InvoiceDAOHCImpl implements InvoiceDAO {
 				hcInvoices.add(invoice);
 			}
 		}
-		//return invoice;
 	}
 	
 	public List<Invoice> getInvoices() {

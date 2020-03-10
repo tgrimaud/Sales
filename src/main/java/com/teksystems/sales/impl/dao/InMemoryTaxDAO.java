@@ -10,12 +10,12 @@ import com.teksystems.sales.entity.ProductType;
 import com.teksystems.sales.entity.Tax;
 import com.teksystems.sales.exceptions.TaxNotFoundException;
 
-public class TaxDAOHCImpl implements TaxDAO {
+public class InMemoryTaxDAO implements TaxDAO {
 	private static TaxDAO instance;
 	
 	private List<Tax> hcTaxes;
 	
-	private TaxDAOHCImpl() {
+	private InMemoryTaxDAO() {
 		hcTaxes = new ArrayList<Tax>();
 		fillTaxList();
 				
@@ -23,7 +23,7 @@ public class TaxDAOHCImpl implements TaxDAO {
 	
 	public static TaxDAO getInstance() {
 		if (instance == null) {
-			instance = new TaxDAOHCImpl();
+			instance = new InMemoryTaxDAO();
 		}
 		return instance;
 	}

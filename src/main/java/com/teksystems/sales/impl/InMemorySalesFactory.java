@@ -4,11 +4,11 @@ import com.teksystems.sales.SalesFactory;
 import com.teksystems.sales.dao.InvoiceDAO;
 import com.teksystems.sales.dao.ProductDAO;
 import com.teksystems.sales.dao.TaxDAO;
-import com.teksystems.sales.impl.dao.InvoiceDAOHCImpl;
-import com.teksystems.sales.impl.dao.ProductDAOHCImpl;
-import com.teksystems.sales.impl.dao.TaxDAOHCImpl;
+import com.teksystems.sales.impl.dao.InMemoryInvoiceDAO;
+import com.teksystems.sales.impl.dao.InMemoryProductDAO;
+import com.teksystems.sales.impl.dao.InMemoryTaxDAO;
 import com.teksystems.sales.impl.presenter.ReceiptPresenterImpl;
-import com.teksystems.sales.impl.presenter.strategy.StdOutStrategyImpl;
+import com.teksystems.sales.impl.presenter.strategy.StdOutPresenterStrategy;
 import com.teksystems.sales.impl.services.ProductServiceHCImpl;
 import com.teksystems.sales.impl.services.PurchaseServiceHCImpl;
 import com.teksystems.sales.impl.services.TaxServiceHCImpl;
@@ -20,31 +20,31 @@ import com.teksystems.sales.services.PurchaseService;
 import com.teksystems.sales.services.TaxService;
 import com.teksystems.sales.taxes.TaxCalculator;
 
-public class SalesFactoryHCImpl implements SalesFactory {
+public class InMemorySalesFactory implements SalesFactory {
 	private static SalesFactory instance;
 	private ProductService productService;
 	private TaxService taxService;
 	private PurchaseService purchaseService;
 	
-	private SalesFactoryHCImpl() {}
+	private InMemorySalesFactory() {}
 	
 	public static SalesFactory getInstance() {
 		if (instance == null) {
-			instance = new SalesFactoryHCImpl();
+			instance = new InMemorySalesFactory();
 		}
 		return instance;
 	}
 
 	public ProductDAO getProductDAO() {
-		return ProductDAOHCImpl.getInstance(); 
+		return InMemoryProductDAO.getInstance(); 
 	}
 
 	public InvoiceDAO getInvoiceDAO() {
-		return InvoiceDAOHCImpl.getInstance();
+		return InMemoryInvoiceDAO.getInstance();
 	}
 
 	public TaxDAO getTaxDAO() {
-		return TaxDAOHCImpl.getInstance();
+		return InMemoryTaxDAO.getInstance();
 	}
 	
 	public ProductService getProductService() {
@@ -75,7 +75,7 @@ public class SalesFactoryHCImpl implements SalesFactory {
 	}
 	public ReceiptPresenter getReceiptPresenter() {
 		ReceiptPresenterImpl presenter = new ReceiptPresenterImpl();
-		presenter.setPrintReciptStrategy(new StdOutStrategyImpl());
+		presenter.setPrintReciptStrategy(new StdOutPresenterStrategy());
 		return presenter;
 	}
 	

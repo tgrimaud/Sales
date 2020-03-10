@@ -9,13 +9,13 @@ import com.teksystems.sales.entity.Product;
 import com.teksystems.sales.entity.ProductType;
 import com.teksystems.sales.exceptions.ProductNotFoundException;
 
-public class ProductDAOHCImpl implements ProductDAO {
+public class InMemoryProductDAO implements ProductDAO {
 	
 	private static ProductDAO instance;
 	
 	private List<Product> hcProducts;
 		
-	private ProductDAOHCImpl() {
+	private InMemoryProductDAO() {
 		hcProducts = new ArrayList<Product>();
 		fillProductList();
 				
@@ -36,7 +36,7 @@ public class ProductDAOHCImpl implements ProductDAO {
 	
 	public static ProductDAO getInstance() {
 		if (instance == null) {
-			instance = new ProductDAOHCImpl();
+			instance = new InMemoryProductDAO();
 		}
 		return instance;
 	}
